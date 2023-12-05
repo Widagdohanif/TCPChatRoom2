@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Web Chat Room</title>
+    <meta charset="UTF-8">
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static' , filename='source/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static' , filename='source/bootstrap/css/bootstrap.min.css.map') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='source/css/templatemo-seo-dream.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='source/css/animated.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='source/css/style.css') }}" />
+    <!-- JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.js"></script>
+</head>
+<body>
+    <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="/" class="logo">
+                            <h4>mini PBL{%if session ['name']%}, Welcome {{ session['name'] }} {%else%}{%endif%}</h4>
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li class="scroll-to-section"><a href="/home" class="active">Home</a></li>
+                            {% if session['name']%}
+                            <li class="scroll-to-section"><a href="/logout">Logout</a></li>
+                            <li class="scroll-to-section"><img src="{{ url_for('static', filename='source/images/logo-icon.png') }}" alt="" /></li>
+                            {%else %}
+                            <li class="scroll-to-section"><a href="/login">Login</a></li>
+                            <li class="scroll-to-section"><a href="/register">Register</a></li>
+                            <li class="scroll-to-section">
+                                <img src="{{ url_for('static', filename='source/images/logo-icon.png') }}" alt="" />
+                            </li>
+                            {%endif%}
+                        </ul>
+                        <a class="menu-trigger">
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+    {%block content %}{% endblock %} 
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='source/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='source/js/animation.js') }}"></script>
+
+</body>
+</html>

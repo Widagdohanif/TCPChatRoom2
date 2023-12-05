@@ -1,0 +1,22 @@
+{% extends "layout.html"%}
+{% block content %}
+
+<div class="wrapper">
+    <section class="chat-area">
+        <header>
+            <a href="/index" class="back-icon"><i class="fas fa-arrow-left"></i></a>
+            <div class="details" >
+                <span style='font-size:19px'>[ GroupChat ]</span>
+            </div>
+        </header>
+        <div class="chat-box" id="chat-box">
+        </div>
+        <form class="typing-area">
+            <input type="text" id="username" value="{{ session['name'] }}" hidden>
+            <input type="text" id="messagecht" placeholder="Type a message here..." autocomplete="off">
+            <button id="sendbtn" class="fab fa-telegram-plane"></button>
+        </form>
+    </section>
+</div>
+<script src="{{ url_for('static', filename='source/js/groupchat.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "layout.html"%}
+{% block title %} Login {% endblock %}
+{% block content %}
+
+  <div class="wrapper">
+    <section class="form login">
+      <header>Login Session</header>
+      <form action='' method="POST" autocomplete="off" enctype="multipart/form-data"> 
+        <div class="error-text"></div>
+          {% for message in get_flashed_messages() %}
+          <div class="field input">Pesan :
+            {{ message }}
+          </div>
+          {% endfor %}
+        <div class="field input">
+          <label>Email Address</label>
+            {{ form.hidden_tag()}}
+            {{ form.email(
+              placeholder="Enter Your Email"
+            )}}
+        </div>
+
+        <div class="field input">
+          <label>Password</label>
+            {{ form.hidden_tag()}}
+            {{ form.password(
+              placeholder="Enter Your Password"
+            )}}
+          <i class="fas fa-eye"></i>
+        </div>
+
+        <div class="field button">
+          <input type="submit" name="submit" id="form-submit" value="Submit">
+        </div>
+      </form>
+      <div class="link">Not yet signed up? <a href="/register">Signup now</a></div>
+    </section>
+  </div>
+
+{% endblock %}

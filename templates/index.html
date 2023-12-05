@@ -1,0 +1,54 @@
+{% extends "layout.html"%}
+{% block content %}
+  <div class="wrapper">
+    <section class="users">
+      <header>
+        <div class="content">
+          <img src="{{ img }}" alt="">
+          <h3>Me</h3>
+          <div class="details">
+            <p>{{ status }}</p>
+          </div>
+        </div>
+      </header>
+      <div class="search">
+        <span class="text">Select an user to start chat</span>
+        <form action="#" method="get">
+          <input type="text" name="search" placeholder="Enter name to search...">
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+      </div>
+      <div class="users-list">
+        <div class="groupchat">
+          <a href="/groupchat">
+            <div  class="button-47 index">
+                GroupChat
+            </div>
+          </a>
+        </div class="userchat">
+          {% if all_users %}
+              <ul>
+                  {% for user in all_users %}
+                  <a href="/chat/{{ user['name'] }}", data-username="{{ user['name'] }}">
+                  <div class="button-47 index">
+                      <div class="chatas">
+                        <img class="chat_avatar" src="{{ url_for('static', filename='uploads/photos/' + user['img']) }}" alt="profile picture">
+                        <div class="chat_info">
+                          <div class="contact_name"> {{user['name']}}</div>
+                          <div class="contact_msg"></div>
+                        </div>
+                      </div>
+                  </div>
+                  </a>
+                  {% endfor %}
+              </ul>
+          {% else %}
+              <p>No users are currently online.</p>
+          {% endif %}
+        </div>
+      </div>
+      </div>
+    </section>
+  </div>
+
+  {% endblock %}

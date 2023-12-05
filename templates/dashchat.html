@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='source/css/dashchat.css') }}" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='source/js/test.js') }}"></script>
+    <script src="{{ url_for('static', filename='source/js/privatechat.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.js"></script>
+    <title>Web Chat App</title>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="messages"></div>
+  <div class="profile">
+    <img class="avatardesc" src="{{ url_for('static', filename='uploads/photos/' + current_user.pictures) }}" alt="profile picture">
+    <div class="name2" id= "name3" value='{{current_user.username}}'>{{current_user.username}}<p class="email" id="name4">{{current_user.email}}</p></div>
+  </div>
+
+
+  <ul class="people">
+    <a href="/chat/groupchat" id="groupchat">
+    <li class="groups" id="groupchat">
+      <span class="title">Main Group</span>
+      <span class="time"><!--Pesan Terakhir Terkirim-->Time</span><br>
+      <span class="preview"><!--Pesan Terbaru-->Last Message</span>
+    </li>
+    </a>
+  {% for user in allusers %}
+  {% if user != current_user %}
+  
+  <!-- Sekarang jika kepilih maka classnya = person focus (Belum dibuat)-->
+    <li class="person" id="{{user.id}}">
+      <a href="/chat/{{user.username}}" id="{{user.username}}">
+      <span class="title" id="recev" >{{ user.username }}</span>
+      <span class="time"><!--Pesan Terakhir Terkirim-->Time</span><br>
+      <span class="preview"><!--Pesan Terbaru-->Last Message</span>
+      </a>
+    </li>
+  {% endif %}
+  {% endfor %}
+
+  </ul>
+
+  <div class="chatbox">
+    <div class="top-bar">
+      <img class="avatar" src="{{ url_for('static', filename='uploads/photos/' + current_user.pictures ) }}" alt="profile picture">
+
+      <div class="name"></div>
+      <!--<div class="icons">
+        <i class="fas fa-phone"></i>
+        <i class="fas fa-video"></i>
+      </div> -->
+      <div class="menu">
+        <div class="dots" ><button id="adduser_"></button></div>
+      </div>
+    </div>
+    <div class="middle" id="chat-box">
+        <!--Pesan akan ditampilkan disini-->  
+    </div>
+    <div class="bottom-bar">
+      <form class="chat" method="POST">
+        <input type="text" id="usernames" value="{{ name }}" hidden>
+        <input type="text" id="usersend" value="{{ current_user.username }}" hidden>
+        <input type="text" id="messages" placeholder="Type a message..." />
+        <button type="submit" id="submited"><i class="fas fa-paper-plane"></i></button>
+      </form>
+    </div>
+  </div>
+</div>
+          
+<footer>
+  <p>made by <a href=""> KEL 2 TCP</a> ♡
+</footer>
+    
+<script>
+  
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+{% extends "layout.html"%}
+{% block content %}
+  <div class="wrapper">
+    <section class="chat-area">
+      <header>
+        <a href="/index" class="back-icon"><i class="fas fa-arrow-left"></i></a>
+        <div class="details">
+          <span>{{ username }}</span>
+          <p>{{ status }}</p>
+        </div>
+      </header>
+      <div class="chat-box">
+
+      </div>
+      <form id="formch" class="typing-area">
+        <input type="text" class="incoming_id" id="username" value="{{ user_id }}" hidden>
+        <input type="text" id="message" class="input-field" placeholder="Type a message here..." autocomplete="off">
+        <button id="send_message"><i class="fab fa-telegram-plane"></i></button>
+      </form>
+    </section>
+  </div>  
+<script src="{{ url_for('static', filename='source/js/privatechat.js') }}"></script>
+{% endblock %}
